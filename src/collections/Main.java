@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -26,13 +29,11 @@ public class Main {
 		for(Persone persone : list) {
 			System.out.print(persone+"\n");
 		}
-		Comparator<Persone> com =(a,b)->b.getAge()-a.getAge();
 		
-		list.sort(com);
-		System.out.print("-------------\n");
-		
-		for(Persone persone : list) {
-			System.out.println(persone);
-		}
+	   List<String> resualt = list.stream()
+			   .filter(p->p.getAge() < 24)
+			   .map(p->p.getName())
+			   .collect(Collectors.toList())  ;
+	   System.out.println(resualt);
 	}
 }
