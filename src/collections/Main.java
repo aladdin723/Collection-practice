@@ -3,9 +3,11 @@ package collections;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 public class Main {
 
@@ -13,16 +15,24 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		Pairs<String, Integer> list =  new Pairs<>();
+		ArrayList<Persone> list = new ArrayList<Persone>();
 		
-		list.setItems1("ala");
-		list.setItems2(21);
+		list.add(new Persone("ala",21));
+		list.add(new Persone("asil",22));
+		list.add(new Persone("tawba",23));
+		list.add(new Persone("ala",24));
+		list.add(new Persone("oussama",25));
 		
-		System.out.println(list.getItems1()+" is "+ list.getItems2());
-		System.out.println("using get first "+ list.getFirst());
-		System.out.println("using get second "+ list.getSecond());
-
+		for(Persone persone : list) {
+			System.out.print(persone+"\n");
+		}
+		Comparator<Persone> com =(a,b)->b.getAge()-a.getAge();
 		
-	
+		list.sort(com);
+		System.out.print("-------------\n");
+		
+		for(Persone persone : list) {
+			System.out.println(persone);
+		}
 	}
 }
