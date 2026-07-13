@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,14 +27,23 @@ public class Main {
 		list.add(new Persone("ala",24));
 		list.add(new Persone("oussama",25));
 		
-		for(Persone persone : list) {
-			System.out.print(persone+"\n");
-		}
 		
-	   List<String> resualt = list.stream()
-			   .filter(p->p.getAge() < 24)
-			   .map(p->p.getName())
-			   .collect(Collectors.toList())  ;
-	   System.out.println(resualt);
+		int totalAges = list.stream()
+		.map(p->p.getAge())
+        .reduce(0,(sum,age)->sum+age);
+         System.out.println(totalAges);
+         
+        Optional<Persone> oldestPersone = list.stream()
+        		.max((a,b)->a.getAge()-b.getAge());
+        		System.out.println(oldestPersone);
+        		
+        boolean anyone =list.stream()
+        		.anyMatch(p->p.getAge()>=21);
+        System.out.println(anyone);
+        	
+        		
+        		
+        
 	}
+	    
 }
